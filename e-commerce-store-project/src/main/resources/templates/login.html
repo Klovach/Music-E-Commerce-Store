@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/defaultTemplate}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>CST-339 Spring Boot Activity Application</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<form action="#" th:action="@{doLogin}" th:object="${loginModel}" method="post" class="bg-light">
+			<table>
+				<tr>
+					<td>Username:</td>
+					<td><input type="text" th:field="*{username}"></td>
+					<td>
+						<h5 style="color:rgb(255, 128, 128)" th:if="${#fields.hasErrors('username')}"
+							th:errors="*{username}">User Name Error</h5>
+					</td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" th:field="*{password}"></td>
+					<td>
+						<h5 style="color:rgb(255, 128, 128)" th:if="${#fields.hasErrors('password')}"
+							th:errors="*{password}">Password Error</h5>
+					</td>
+				</tr>
+			</table>
+			<br />
+			<input type="submit" name="submit" value="Submit" class="btn btn-primary" autocomplete="off" />
+			<input type="reset" name="reset" value="Reset" class="btn btn-secondary" autocomplete="off" />
+			<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
+			<div th:each="err : ${#fields.errors('*')}">
+				<span style="color:rgb(255, 128, 128)" th:text="${err}" class="fieldError"></span>
+			</div>
+
+			&emsp;&emsp;&emsp;Don't have an account?
+			<a href="/register">Signup</a>
+		</form>
+	</div>
+</body>
+
+</html>
