@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="layouts/defaultTemplate">
+	layout:decorate="layouts/default">
 
 <head>
 	<meta charset="UTF-8">
 	<title>Your Orders</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+		integrity="sha512-7m1cMkDLEeJNLlC07bH7V1y2+J5L0uLcKKP5oV+5CZhO5tV96zkSAs9+tyA/mowO+rDncqL4veJQ51x+LfO8wA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 	<div layout:fragment="content">
-		<h2>Your Orders</h2><br />
-		<table style="width:50%">
+	<h2>Your Orders</h2><br />
+	<div class="table-responsive">
+		<table class="table">
 			<thead>
 				<tr>
-					<th style="text-align:center">Order Number</th>
-					<th style="text-align:center">Product Name</th>
-					<th style="text-align:center">Price</th>
-					<th style="text-align:center">Quantity</th>
-					<th></th>
+					<th scope="col">Order Number</th>
+					<th scope="col">Product Name</th>
+					<th scope="col">Price</th>
+					<th scope="col">Quantity</th>
+					<th scope="col"></th>
+				</tr>
 			</thead>
 			<tbody>
 				<tr th:if="${orders.empty}">
-					<td style="text-align:center" colspan="4">No Orders Available</td>
+					<td colspan="4">No Orders Available</td>
 				</tr>
 				<tr th:each="order : ${orders}">
-					<td style="text-align:center">
-						<h5 th:text="${order.orderNo}">00000001</h5>
-					</td>
-					<td style="text-align:center">
-						<h5 th:text="${order.productName}">Product 1</h5>
-					</td>
-					<td style="text-align:center">
-						<h5 th:text="${order.price}">1.00</h5>
-					</td>
-					<td style="text-align:center">
-						<h5 th:text="${order.quantity}">1</h5>
-					</td>
+					<td><h5 th:text="${order.orderNo}">00000001</h5></td>
+					<td><h5 th:text="${order.productName}">Product 1</h5></td>
+					<td><h5 th:text="${order.price}">1.00</h5></td>
+					<td><h5 th:text="${order.quantity}">1</h5></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+</div>
 </body>
 
 </html>

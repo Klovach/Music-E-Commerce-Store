@@ -1,45 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layouts/defaultTemplate}">
+    layout:decorate="~{layouts/default}">
 
 <head>
-	<meta charset="UTF-8">
-	<title>CST-339 Spring Boot Activity Application</title>
+    <meta charset="UTF-8">
+    <title>CST-339 Spring Boot Activity Application</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
 </head>
 
 <body>
-	<div layout:fragment="content">
-		<form action="#" th:action="@{doLogin}" th:object="${loginModel}" method="post" class="bg-light">
-			<table>
-				<tr>
-					<td>Username:</td>
-					<td><input type="text" th:field="*{username}"></td>
-					<td>
-						<h5 style="color:rgb(255, 128, 128)" th:if="${#fields.hasErrors('username')}"
-							th:errors="*{username}">User Name Error</h5>
-					</td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><input type="password" th:field="*{password}"></td>
-					<td>
-						<h5 style="color:rgb(255, 128, 128)" th:if="${#fields.hasErrors('password')}"
-							th:errors="*{password}">Password Error</h5>
-					</td>
-				</tr>
-			</table>
-			<br />
-			<input type="submit" name="submit" value="Submit" class="btn btn-primary" autocomplete="off" />
-			<input type="reset" name="reset" value="Reset" class="btn btn-secondary" autocomplete="off" />
-			<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
-			<div th:each="err : ${#fields.errors('*')}">
-				<span style="color:rgb(255, 128, 128)" th:text="${err}" class="fieldError"></span>
-			</div>
-
-			&emsp;&emsp;&emsp;Don't have an account?
-			<a href="/register">Signup</a>
-		</form>
-	</div>
+    <div class="container my-5" layout:fragment="content">
+        <div class="card mx-auto" style="max-width: 400px;">
+            <div class="card-header">
+                <h1 class="text-center">Welcome Back</h1>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/store/doLogin">
+                    <div th:if="${error}" class="alert alert-danger">
+                        <p th:text="${error}"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Username:</label>
+                        <input type="username" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" name="submit" value="Login" class="btn btn-primary" autocomplete="off">
+                        <input type="reset" name="reset" value="Reset" class="btn btn-secondary" autocomplete="off">
+                    </div>
+                </form>
+                <div class="text-center">
+                    Don't have an account? <a href="/store/register">Signup</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNSB0vo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
