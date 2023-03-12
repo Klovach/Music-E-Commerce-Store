@@ -3,11 +3,9 @@ package com.gcu.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.gcu.model.LoginModel;
 
-@Service
+
 public class UserService {
 
     private List<LoginModel> users = new ArrayList<>();
