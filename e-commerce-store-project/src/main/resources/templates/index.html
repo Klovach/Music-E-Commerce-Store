@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default}">
+<head>
+	<meta charset="UTF-8">
+	<title>My Company</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		body {
+			background-color: #f8f9fa;
+		}
+
+		.logo {
+			display: block;
+			margin: 0 auto;
+			padding-top: 50px;
+			padding-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container" layout:fragment="content" align="center">
+    <img src="/images/company-logo.png" width="20%" alt="Company Logo" class="logo"> 
+    <p>Incredible music, incredible artists, right at your fingertips.</p>
+    <div>
+        <div class="col-md-6">
+            <a href="/store/login" class="btn btn-primary btn-lg btn-block">Login</a>
+        </div>
+        <br>
+        <div class="col-md-6">
+            <a href="/store/register" class="btn btn-secondary btn-lg btn-block">Register</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
