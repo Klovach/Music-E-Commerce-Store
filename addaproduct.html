@@ -1,0 +1,150 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-Commerce Music Store Inventory Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  </head>
+  	<body>
+		<div align="center">
+			<h1>E-Commerce Music Store Inventory Manager</h1>
+		</div>
+		<div class="bs-example">
+			
+			<nav class="navbar navbar-expand-lg fixed-top navbar-scroll shadow-0" style="background-color: #343a40;">
+  				<div class="container">
+    				<a class="navbar-brand" href="#">Add a Product</a>
+    				<button class="navbar-toggler ps-0" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+     				 aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+      					<span class="d-flex justify-content-start align-items-center">
+        					<i class="fas fa-bars"></i>
+      					</span>
+    				</button>
+    			<div class="collapse navbar-collapse" id="navbarExample01">
+      			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        			<li class="nav-item active">
+         				 <a class="nav-link px-3" th:href="@{products}">Products</a>
+        			</li>
+     
+     			 </ul>
+
+      <ul class="navbar-nav flex-row">
+        <li class="nav-item">
+          <a class="nav-link pe-3" href="#!">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#!">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link ps-3" href="#!">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+		</div>
+	</div>
+	 <div class="p-3 text-center bg-white border-bottom">
+    <div class="container">
+      <div class="row gy-3">
+        <!-- Left elements -->
+        <div class="col-lg-2 col-sm-4 col-4">
+          <a href="https://mdbootstrap.com/" target="_blank" class="float-start">
+            <img src="/images/company-logo.png" height="250" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="collapse card d-lg-block mb-5" id="navbarSupportedContent">
+          <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button
+                        class="accordion-button text-dark bg-light"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#panelsStayOpen-collapseOne"
+                        aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne"
+                        >
+                  Admin Product Panel
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+                <div class="accordion-body">
+                  <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark">Update A Product </a></li>
+                    <li><a href="#" class="text-dark">Delete A Product </a></li>
+                    <li><a th:href="@{addaproduct}" class="text-dark">Add A Product </a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            </div>
+           </div>
+        </div>
+		<div class="col-md-6">
+			<div class="row gy-3">
+				<div class="col-md-7">
+					<img alt="Not Avalable Until Database Implementation" src="/images/notavalable.jpg" class="img-thumbnail" width="242" height="242" style="vertical-align:middle;margin:30px 100px">
+				</div>
+				<div class="col-md-5">
+					<form action="#" th:action="@{/addaproduct}" th:object="${newProduct}" method="post" >
+						<div class="form-group">						 
+							<label for="ProductName">
+								Product Name:
+							</label>
+							<input type="text" th:field="*{name}" class="form-control" id="name">
+						</div>
+						<div class="form-group">						 
+						<label for="itemDescription" class="form-label">Description:</label>
+  						<textarea th:field="*{description}" class="form-control" id="itemDescription" rows="3"></textarea>
+						</div>
+						<div class="form-group">							 
+							<label for="productQty">
+								Qty:
+							</label>
+							<input type="text" th:field="*{qty}" class="form-control" id="productQty">
+						</div>
+						<div class="form-group">							 
+							<label for="productPrice">
+								Price:
+							</label>
+							<input  type="text" th:field="*{price}" class="form-control" id="productPrice" />
+						</div>
+						<div class="form-group">						 
+							<label for="productItemNumber">
+								Item Number:
+							</label>
+							<input type="text" th:field="*{itemNumer}" class="form-control" id="productItemNumber" />
+						</div>
+						<div class="form-group">						 
+							<label for="productImgNotValid">
+								Image of Product:
+							</label>
+							<input type="file" class="form-control-file" id="*productImgNotValid" />
+							<p class="help-block">
+								Select image files only (jpg, gif, jpeg)
+							</p>
+						</div>
+						<button type="submit" class="btn btn-primary">
+							Submit
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+  </body>
+</html>
