@@ -1,8 +1,5 @@
 package com.gcu.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gcu.model.LoginModel;
-import com.gcu.model.OrderModel;
 import com.gcu.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/store")
@@ -26,18 +24,15 @@ public class LoginController {
 
     // login POST handler
     @PostMapping("/doLogin")
-    public String doLogin(@ModelAttribute("loginModel") LoginModel loginModel, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
-    	System.out.println("called do login");
-    	if (result.hasErrors()) {
-        	System.out.println("result has errors");
+    public String doLogin(@ModelAttribute("loginModel") LoginModel loginModel, BindingResult result, Model model, RedirectAttributes redirectAttributes, HttpSession session) {
+        if (result.hasErrors()) {
             return "login";
         }
 
         if (userService.isUserExist(loginModel.getUsername(), loginModel.getPassword())) {
-        	System.out.println("redirect");
-            return "redirect:/store/orders";
+            session.setAttribute("user", loginModel.getUsername());
+            return "redirect:/create";
         } else {
-        	System.out.println("invalid username and password");
             redirectAttributes.addFlashAttribute("error", "Invalid username or password");
             return "redirect:/store/login";
         }
@@ -50,7 +45,8 @@ public class LoginController {
     }
 
     // display orders GET handler
-    @GetMapping("/orders")
+    
+    /*@GetMapping("/orders")
     public String displayOrders(Model model) {
         List<OrderModel> orders = new ArrayList<OrderModel>();
         orders.add(new OrderModel(0L, "00000001", "Product 1", 1.00f, 1));
@@ -62,5 +58,5 @@ public class LoginController {
         model.addAttribute("title", "My Orders");
         model.addAttribute("orders", orders);
         return "orders";
-    } 
+    }  */
 } 

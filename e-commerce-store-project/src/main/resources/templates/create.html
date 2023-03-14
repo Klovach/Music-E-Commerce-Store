@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+
+<head>
+	<title>Create Album</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container" layout:fragment="content">
+		<h1 class="text-center">Create New Album</h1>
+		<form method="post" action="/create">
+			<div class="form-group">
+				<label>Title:</label>
+				<input class="form-control" type="text" name="title" required>
+			</div>
+			
+			<div class="form-group">
+				<label>Artist:</label>
+				<input class="form-control" type="text" name="artist" required>
+			</div>
+			
+			<div class="form-group">
+				<label>Genre:</label>
+				<input class="form-control" type="text" name="genre" required>
+			</div>
+			
+			<div class="form-group">
+				<label>Release Date:</label>
+				<input class="form-control" type="date" name="releaseDate" required>
+			</div>
+			
+			<div class="form-group">
+				<label>Price:</label>
+				<input class="form-control" type="number" name="price" step="0.01" min="0" required>
+			</div>
+			
+			<div class="form-group">
+				<label>Description:</label><br>
+				<textarea class="form-control" name="description" required></textarea>
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Create</button>
+		</form>
+	</div>
+</body>
+
+</html>

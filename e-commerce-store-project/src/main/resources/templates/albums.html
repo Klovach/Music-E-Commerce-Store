@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+
+<head>
+	<title>Albums</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<body>
+	<div class="container" layout:fragment="content">
+		<h1 class="text-center">Albums</h1>
+		<div class="d-flex justify-content-between mb-3">
+			<c:if test="${sessionScope.user != null}">
+				<button type="button" class="btn btn-primary" onclick="location.href='/create'">Add New Album</button>
+			</c:if>
+			<button type="button" class="btn btn-secondary" onclick="location.href='/albums?page=2'">Next</button>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Artist</th>
+					<th>Genre</th>
+					<th>Release Date</th>
+					<th>Price</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="album : ${albums}">
+					<td th:text="${album.title}"></td>
+					<td th:text="${album.artist}"></td>
+					<td th:text="${album.genre}"></td>
+					<td th:text="${album.releaseDate}"></td>
+					<td th:text="${album.price}"></td>
+					<td th:text="${album.description}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

@@ -13,7 +13,6 @@ public class ProductModel {
 	private int itemNumer;
 
 	public ProductModel(String name, String description, int qty, double price, int itemNumer) {
-		super();
 		this.name = name;
 		this.description = description;
 		this.qty = qty;
