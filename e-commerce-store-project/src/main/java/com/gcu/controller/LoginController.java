@@ -22,41 +22,47 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    // login POST handler
+    /*doLogin
+     * The @PostMapping("/doLogin") annotation maps the HTTP POST request from the login form to the 
+     * doLogin() method. This method takes in the LoginModel object submitted in the form, 
+     * a BindingResult object that checks for validation errors, a Model object that stores data for the view, 
+     * a RedirectAttributes object that stores data to be used after a redirect, and a HttpSession object 
+     * that stores session data.
+     */
     @PostMapping("/doLogin")
     public String doLogin(@ModelAttribute("loginModel") LoginModel loginModel, BindingResult result, Model model, RedirectAttributes redirectAttributes, HttpSession session) {
-        if (result.hasErrors()) {
+    	 // If there are errors, return to the login page.
+    	if (result.hasErrors()) {
             return "login";
         }
-
+    	 // Check if the user exists in the system. 
         if (userService.isUserExist(loginModel.getUsername(), loginModel.getPassword())) {
+        	 // Set the user name in the session and redirect to the create page.
             session.setAttribute("user", loginModel.getUsername());
             return "redirect:/create";
         } else {
+        	 // If the user does not exist, add an error message and redirect to the login page.
             redirectAttributes.addFlashAttribute("error", "Invalid username or password");
             return "redirect:/store/login";
         }
     }
 
+    /*showLoginForm(Model model) 
+     * This method handles the HTTP GET request for displaying the login page.
+     */
     @GetMapping("/login")
     public String showLoginForm(Model model) {
         model.addAttribute("loginModel", new LoginModel());
         return "login";
     }
-
-    // display orders GET handler
     
-    /*@GetMapping("/orders")
-    public String displayOrders(Model model) {
-        List<OrderModel> orders = new ArrayList<OrderModel>();
-        orders.add(new OrderModel(0L, "00000001", "Product 1", 1.00f, 1));
-        orders.add(new OrderModel(1L, "00000002", "Product 2", 2.00f, 2));
-        orders.add(new OrderModel(2L, "00000003", "Product 3", 3.00f, 3));
-        orders.add(new OrderModel(3L, "00000004", "Product 4", 4.00f, 4));
-        orders.add(new OrderModel(4L, "00000005", "Product 5", 5.00f, 5));
-
-        model.addAttribute("title", "My Orders");
-        model.addAttribute("orders", orders);
-        return "orders";
-    }  */
+    /*logout
+     * This method will log the user out by invalidating the httpSession. 
+     * This method handles the HTTP GET request for logout. 
+     */
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/store/login";
+    }
 } 

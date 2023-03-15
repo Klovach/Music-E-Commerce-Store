@@ -12,9 +12,16 @@
 		<h1 class="text-center">Albums</h1>
 		<div class="d-flex justify-content-between mb-3">
 			<c:if test="${sessionScope.user != null}">
-				<button type="button" class="btn btn-primary" onclick="location.href='/create'">Add New Album</button>
+				<button type="button" class="btn btn-primary button-margin" onclick="location.href='/create'">Add New Album</button>
 			</c:if>
-			<button type="button" class="btn btn-secondary" onclick="location.href='/albums?page=2'">Next</button>
+			<div>
+				<button type="button" class="btn btn-secondary button-margin"
+					onclick="location.href='/albums?page=2'">Next Page</button>
+				<c:if test="${sessionScope.user != null}">
+					<button type="button" class="btn btn-warning"
+						onclick="location.href='/store/logout'">Logout</button>
+				</c:if>
+			</div>
 		</div>
 		<table class="table">
 			<thead>

@@ -22,6 +22,10 @@ main {
 	flex: 1;
 }
 
+ .button-margin {
+        margin-right: 5px;
+    }
+
 /* TEAM : We can change the colors of our buttons when wanted. We have a lot of possibilities here. 
 .btn-primary {
   background-image: linear-gradient(to bottom, #007bff, #0056b3);

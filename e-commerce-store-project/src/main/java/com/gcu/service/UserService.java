@@ -22,6 +22,10 @@ public class UserService {
     public void addUser(LoginModel user) {
         users.add(user);
     }
+    
+    public void removeUser(LoginModel user) {
+        users.remove(user);
+    }
 
     public boolean isUserExist(String username, String password) {
         return users.stream()

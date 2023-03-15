@@ -1,5 +1,7 @@
 package com.gcu.service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,6 +22,19 @@ public class AlbumService {
 		return album;
 	}
 
+	 public AlbumService() {
+	     AlbumModel album1 = new AlbumModel(1, "Dummy Album 1", "Dummy Artist 1", "Pop", LocalDate.now(), new BigDecimal(10.00), "This is a dummy album.");
+	     AlbumModel album2 = new AlbumModel(2, "Dummy Album 2", "Dummy Artist 2", "Rock", LocalDate.now(), new BigDecimal(12.00), "This is another dummy album.");
+	     AlbumModel album3 = new AlbumModel(2, "Dummy Album 3", "Dummy Artist 2", "Rock", LocalDate.now(), new BigDecimal(12.00), "This is another dummy album.");
+	     AlbumModel album4 = new AlbumModel(2, "Dummy Album 4", "Dummy Artist 4", "Rock", LocalDate.now(), new BigDecimal(12.00), "This is another dummy album.");
+	     AlbumModel album5 = new AlbumModel(2, "Dummy Album 5", "Dummy Artist 2", "Rock", LocalDate.now(), new BigDecimal(12.00), "This is another dummy album.");
+	     albums.add(album1);
+	     albums.add(album2);
+	     albums.add(album3);
+	     albums.add(album4);
+	     albums.add(album5);
+	 }
+	 
 	public AlbumModel getAlbumById(int id) {
 	    Optional<AlbumModel> album = albums.stream()
 	            .filter(a -> a.getId() == id)
